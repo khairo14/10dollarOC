@@ -6,5 +6,9 @@ $(document).ready(function(){
     $('.top-menu-drop').on('click', function () {
         $('.top-menu').stop(true, true).slideToggle(300); // 300ms toggle animation
     });
+
+    $('.mid-menu-drop').on('click', function () {
+        $('.mid-menu').stop(true, true).slideToggle(300); // 300ms toggle animation
+    });
 });
 
