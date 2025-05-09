@@ -76,3 +76,73 @@ $(document).ready(function(){
 
 });
 
+$(document).ready(function() {
+    // Set the container height to match the tallest panel
+    function setContainerHeight() {
+        const heights = [
+            $('.panel1').outerHeight(),
+            $('.panel2').outerHeight(),
+            $('.panel3').outerHeight()
+        ];
+        const maxHeight = Math.max(...heights);
+        $('.3way-panel').css('height', maxHeight + 'px');
+    }
+
+    // Initialize on load and when window resizes
+    setContainerHeight();
+    $(window).resize(setContainerHeight);
+
+    // Button click handlers
+    $('.panel-btn-1').click(function(e) {
+        e.preventDefault();
+        // Slide panel1 in from left, others out
+        $('.panel1').removeClass('-translate-x-full translate-x-full').addClass('translate-x-0');
+        $('.panel2').removeClass('translate-x-0 -translate-x-full').addClass('translate-x-full');
+        $('.panel3').removeClass('translate-x-0 -translate-x-full').addClass('translate-x-full');
+        $('.panel-btn-1').parent().addClass('bg-yellow-600 text-white').removeClass('bg-white text-black');
+        $('.panel-btn-2').parent().addClass('bg-white text-black').removeClass('bg-yellow-600 text-white');
+        $('.panel-btn-3').parent().addClass('bg-white text-black').removeClass('bg-yellow-600 text-white');
+    });
+
+    $('.panel-btn-2').click(function(e) {
+        e.preventDefault();
+        // Slide panel2 to center, others out
+        $('.panel1').removeClass('translate-x-0 translate-x-full').addClass('-translate-x-full');
+        $('.panel2').removeClass('-translate-x-full translate-x-full').addClass('translate-x-0');
+        $('.panel3').removeClass('translate-x-0 -translate-x-full').addClass('translate-x-full');
+        $('.panel-btn-2').parent().addClass('bg-yellow-600 text-white').removeClass('bg-white text-black');
+        $('.panel-btn-1').parent().addClass('bg-white text-black').removeClass('bg-yellow-600 text-white');
+        $('.panel-btn-3').parent().addClass('bg-white text-black').removeClass('bg-yellow-600 text-white');
+    });
+
+    $('.panel-btn-3').click(function(e) {
+        e.preventDefault();
+        // Slide panel3 in from right, others out
+        $('.panel1').removeClass('translate-x-0 -translate-x-full').addClass('-translate-x-full');
+        $('.panel2').removeClass('translate-x-0 translate-x-full').addClass('-translate-x-full');
+        $('.panel3').removeClass('-translate-x-full translate-x-full').addClass('translate-x-0');
+        $('.panel-btn-3').parent().addClass('bg-yellow-600 text-white').removeClass('bg-white text-black');
+        $('.panel-btn-2').parent().addClass('bg-white text-black').removeClass('bg-yellow-600 text-white');
+        $('.panel-btn-1').parent().addClass('bg-white text-black').removeClass('bg-yellow-600 text-white');
+    });
+});
+
+$(document).ready(function() {
+    $('.faq-toggle').click(function() {
+        // Toggle the current item
+        const content = $(this).next('.faq-content');
+        const arrow = $(this).find('.fa-caret-down');
+
+        // Slide toggle the content
+        content.slideToggle(300);
+
+        // Rotate the arrow
+        arrow.toggleClass('rotate-180');
+        arrow.toggleClass('text-yellow-600');
+
+        // Close other open items (optional)
+        $(this).closest('.faq-item').siblings().find('.faq-content').slideUp(300);
+        $(this).closest('.faq-item').siblings().find('.fa-caret-down').removeClass('rotate-180');
+        $(this).closest('.faq-item').siblings().find('.fa-caret-down').removeClass('text-yellow-600');
+    });
+});

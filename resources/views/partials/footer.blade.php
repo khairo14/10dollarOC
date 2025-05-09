@@ -1,3 +1,15 @@
+<div class="bg-white py-2 border-t-1 border-gray-300 w-full">
+    <div class="mx-auto max-w-7xl px-4 sm:px-10 lg:px-14 justify-items-center space-x-2">
+        <div class="grid-rows-1 items-center justify-items-center w-full justify-between px-5 md:flex space-y-4">
+            <img src="{{ asset('img/norton.png') }}" alt="norton">
+            <img src="{{ asset('img/yelp-reviews.png') }}" alt="norton">
+            <img src="{{ asset('img/white-mini-icon.gif') }}" alt="norton">
+            <img src="{{ asset('img/bbb-logo.png') }}" alt="norton">
+            <img src="{{ asset('img/trust-seal.png') }}" alt="norton">
+        </div>
+    </div>
+</div>
+
 <div class="bg-gray-600">
     <div class="mx-auto max-w-7xl px-4 sm:px-10 lg:px-14">
         <div class="grid grid-rows-1 md:grid-cols-4 space-x-3 h-full">
