@@ -9,16 +9,13 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
-<body class="h-full">
-    <div class="min-h-full">
-
+<body class="min-h-screen flex flex-col">
         @include('partials.nav') <!-- Navbar partial -->
 
-        <main>
+        <main class="flex-1 h-full">
             @yield('content')
         </main>
 
         @include('partials.footer') <!-- Footer partial -->
-    </div>
 </body>
 </html>

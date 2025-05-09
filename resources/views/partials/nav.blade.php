@@ -76,7 +76,7 @@
 
 <header class="bg-white shadow-sm w-full h-full">
     <div class="mx-auto max-w-7xl px-4 sm:px-10 lg:px-14 h-full flex justify-between">
-        <div class="py-4 flex flex-row">
+        <div class="py-3 flex flex-row">
             <a href="http://"><img src="{{ asset('img/logo.png') }}" alt="logo"></a>
             <div class="justify-center py-2 px-2 w-12 h-12 items-center bg-yellow-600 -mt-3 ml-5 rounded-sm text-white flex md:hidden mid-menu-drop">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="h-10 w-10 justify-self-center">
