@@ -1,5 +1,12 @@
 import './bootstrap';
-import $ from 'jquery';
+import '../css/app.css';
+import $, { data } from 'jquery';
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
 // navi
 $(document).ready(function(){
@@ -144,5 +151,319 @@ $(document).ready(function() {
         $(this).closest('.faq-item').siblings().find('.faq-content').slideUp(300);
         $(this).closest('.faq-item').siblings().find('.fa-caret-down').removeClass('rotate-180');
         $(this).closest('.faq-item').siblings().find('.fa-caret-down').removeClass('text-yellow-600');
+    });
+});
+
+// registration
+$(document).ready(function() {
+    $('.register').on('click', function(e) {
+        const location = $('#location').val();
+        const course = $('#course').val();
+
+        if (location && course <= 0 || location <= 0 || course <= 0) {
+            e.preventDefault(); // Prevent form submission
+            $('#error-message').text('Please select both location and course').show();
+        }
+        else {
+            $('#error-message').hide();
+            window.location.href ='/user';
+        }
+    });
+});
+
+// tooltip
+$(document).ready(function() {
+    // Tooltip for "What's this?"
+    $('[class*="text-blue-500"]').hover(function(e) {
+        const tooltip = $('#tooltip');
+        tooltip.removeClass('hidden').css({
+            top: e.pageY + 10,
+            left: e.pageX + 10
+        });
+    }, function() {
+        $('#tooltip').addClass('hidden');
+    });
+
+    $('.e-tooltip').hover(function(e) {
+        const etooltip = $('#e-tooltip');
+        etooltip.removeClass('hidden').css({
+            top: e.pageY + 10,
+            left: e.pageX + 10
+        });
+    }, function() {
+        $('#e-tooltip').addClass('hidden');
+    });
+
+    $('.m-tooltip').hover(function(e) {
+        const etooltip = $('#m-tooltip');
+        etooltip.removeClass('hidden').css({
+            top: e.pageY + 10,
+            left: e.pageX + 10
+        });
+    }, function() {
+        $('#m-tooltip').addClass('hidden');
+    });
+
+    $('.p-tooltip').hover(function(e) {
+        const etooltip = $('#p-tooltip');
+        etooltip.removeClass('hidden').css({
+            top: e.pageY + 10,
+            left: e.pageX + 10
+        });
+    }, function() {
+        $('#p-tooltip').addClass('hidden');
+    });
+
+    $('#phone').on('input', function(e) {
+        // Remove all non-digit characters
+        this.value = this.value.replace(/[^0-9]/g, '');
+
+        // Optional: Format as (123) 456-7890
+        if (this.value.length > 3 && this.value.length <= 6) {
+            this.value = `(${this.value.slice(0, 3)}) ${this.value.slice(3)}`;
+        } else if (this.value.length > 6) {
+            this.value = `(${this.value.slice(0, 3)}) ${this.value.slice(3, 6)}-${this.value.slice(6, 10)}`;
+        }
+    });
+});
+
+// Password validation
+// Password confirmation validation
+$(document).ready(function() {
+    $('#password_confirmation').on('keyup', function() {
+        if ($(this).val() !== $('#password').val()) {
+            $(this).addClass('border-red-500').removeClass('border-gray-300');
+        } else {
+            $(this).removeClass('border-red-500').addClass('border-gray-300');
+        }
+    });
+
+    // Form submission
+    $('#registrationForm').on('submit', function(e) {
+        e.preventDefault();
+
+    // Validate passwords match
+        if ($('#password').val() !== $('#password_confirmation').val()) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+    // Validate terms checkbox
+        if (!$('#terms').is(':checked')) {
+            alert('You must accept the terms and conditions');
+            return;
+        }
+
+    // Submit form via AJAX or proceed
+        $.ajax({
+            url: '/user-registration',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                first_name: $('#first_name').val(),
+                last_name: $('#last_name').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                password: $('#password').val(),
+                password_confirmation: $('#password_confirmation').val(),
+                address_line_1: $('#address').val(),
+                city: $('#city').val(),
+                state: $('#state').val(),
+                zip_code: $('#zip').val(),
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                console.log('Success:', response);
+                if (response.message) {
+                    console.log(response.user);
+                    alert(response.message);
+                }
+                // Redirect or show success message
+                window.location.href = '/payment';
+            },
+            error: function(xhr, status, error) {
+                console.group('Registration Error');
+                console.log('Status:', xhr.status);
+                console.log('Status Text:', xhr.statusText);
+
+                if (xhr.status === 422) {
+                    // Laravel validation errors
+                    const errors = xhr.responseJSON.errors;
+                    console.log('Validation Errors:', errors);
+
+                    // Display errors to user
+                    let errorMessages = [];
+                    $.each(errors, function(field, messages) {
+                        errorMessages.push(messages.join('\n'));
+                    });
+                    alert('Please fix the following errors:\n\n' + errorMessages.join('\n'));
+                } else {
+                    console.log('Error:', error.message);
+                    alert('An error occurred. Please try again later.');
+                }
+                console.groupEnd();
+            }
+        });
+    });
+});
+
+// login
+$(document).ready(function() {
+    $('.login_email').on('click', function(e) {
+        e.preventDefault();
+
+        // Validate form fields
+        if ($('#email').val() === '' || $('#password').val() === '') {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        // Submit form via AJAX
+        $.ajax({
+            url: '/user-login',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                email: $('#email').val(),
+                password: $('#password').val(),
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                console.log('Success:', response);
+                if (response.message) {
+                    alert(response.message);
+                }
+                // Redirect or show success message
+                window.location.href = '/payment';
+            },
+            error: function(xhr, status, error) {
+                console.group('Login Error');
+                console.log('Status:', xhr.status);
+                console.log('Status Text:', xhr.statusText);
+
+                if (xhr.status === 422) {
+                    // Laravel validation errors
+                    const errors = xhr.responseJSON.errors;
+                    console.log('Validation Errors:', errors);
+
+                    // Display errors to user
+                    let errorMessages = [];
+                    $.each(errors, function(field, messages) {
+                        errorMessages.push(messages.join('\n'));
+                    });
+                    alert('Please fix the following errors:\n\n' + errorMessages.join('\n'));
+                } else {
+                    console.log('Error:', error.message);
+                    alert('An error occurred. Please try again later.');
+                }
+                console.groupEnd();
+            }
+        });
+    });
+});
+// logout
+$(document).ready(function() {
+    $('.logout').on('click', function(e) {
+        e.preventDefault();
+
+        // Submit form via AJAX
+        $.ajax({
+            url: '/user-logout',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                console.log('Success:', response);
+                if (response.message) {
+                    alert(response.message);
+                }
+                // Redirect or show success message
+                window.location.href = '/';
+            },
+            error: function(xhr, status, error) {
+                console.group('Logout Error');
+                console.log('Status:', xhr.status);
+                console.log('Status Text:', xhr.statusText);
+
+                if (xhr.status === 422) {
+                    // Laravel validation errors
+                    const errors = xhr.responseJSON.errors;
+                    console.log('Validation Errors:', errors);
+
+                    // Display errors to user
+                    let errorMessages = [];
+                    $.each(errors, function(field, messages) {
+                        errorMessages.push(messages.join('\n'));
+                    });
+                    alert('Please fix the following errors:\n\n' + errorMessages.join('\n'));
+                } else {
+                    console.log('Error:', error.message);
+                    alert('An error occurred. Please try again later.');
+                }
+                console.groupEnd();
+            }
+        });
+    });
+});
+// payment
+$(document).ready(function() {
+    // Base price
+    const basePrice = 10.00;
+    let deliveryPrice = 0.00;
+    let processingPrice = 19.95;
+
+    // Calculate total function
+    function calculateTotal() {
+        const total = basePrice + deliveryPrice + processingPrice;
+        $('#totalAmount').text('$' + total.toFixed(2));
+    }
+
+    // Delivery method change
+    $('input[name="delivery_method"]').change(function() {
+        deliveryPrice = parseFloat($(this).data('price'));
+        calculateTotal();
+    });
+
+    // DOT Processing change
+    $('input[name="dot_processing"]').change(function() {
+        processingPrice = parseFloat($(this).data('price'));
+        $('#dotProcessingFee span:last').text('$' + processingPrice.toFixed(2));
+        calculateTotal();
+    });
+
+    // Edit billing info button
+    $('#editBilling').click(function() {
+        $('input[name="name"], input[name="email"], input[name="address"], input[name="city"], input[name="state"], input[name="zip"], input[name="phone"]').prop('readonly', false);
+        $(this).text('Cancel Edit').removeClass('bg-gray-500').addClass('bg-red-500');
+
+        // Toggle between edit and cancel
+        if ($(this).data('editing')) {
+            $('input[name="name"], input[name="email"], input[name="address"], input[name="city"], input[name="state"], input[name="zip"], input[name="phone"]').prop('readonly', true);
+            $(this).text('Edit Billing Info').removeClass('bg-red-500').addClass('bg-gray-500');
+            $(this).data('editing', false);
+            $('#name').focus();
+        } else {
+            $(this).data('editing', true);
+        }
+    });
+
+    // Format card number
+    $('#cardNumber').on('input', function() {
+        let value = $(this).val().replace(/\s+/g, '');
+        if (value.length > 0) {
+            value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+        }
+        $(this).val(value);
+    });
+
+    // Format expiration date
+    $('#expiryDate').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 2) {
+            value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        }
+        $(this).val(value);
     });
 });

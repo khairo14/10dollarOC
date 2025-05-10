@@ -18,26 +18,26 @@
                             <div class="col-span-2">
                                 <ul class="w-full text-white px-5 py-3 space-x-2 text-xl space-y-5 items-center">
                                     <li>
-                                        <i class="fa fa-gavel"></i>
+                                        <i class="fa fa-gavel" aria-label="Wisconsin State Approved School"></i>
                                         Wisconsin State Approved School (License # 764)
                                     </li>
                                     <li>
-                                        <i class="fa fa-users"></i>
+                                        <i class="fa fa-users" aria-label="Over 1.25 Million Customers"></i>
                                         Over 1.25 Million Customers! (<a href="http://www.shopperapproved.com/reviews/urbantrafficschool.com/" class="text-decoration: underline">5-Star Reviews</a>)
                                     </li>
                                     <li>
-                                        <i class="fa-regular fa-thumbs-up"></i>
+                                        <i class="fa-regular fa-thumbs-up" aria-label="Over 40,000+ 5-Star Course Reviews"></i>
                                         <span class="rotate inline-block whitespace-nowrap">
                                             <span class="front whitespace-nowrap">Over 40,000+ 5-Star Course Reviews</span>
                                             <span class="back whitespace-nowrap" style="display:none;"></span>
                                         </span>
                                     </li>
                                     <li>
-                                        <i class="fa fa-refresh"></i>
+                                        <i class="fa fa-refresh" aria-label="Free Unlimited Retakes"></i>
                                         Free Unlimited Retakes for Your Peace of Mind
                                     </li>
                                     <li>
-                                        <i class="fa fa-bullhorn"></i>
+                                        <i class="fa fa-bullhorn" aria-label="Same Day Wisconsin DMV Reporting"></i>
                                         Same Day Wisconsin DMV Reporting
                                     </li>
                                 </ul>
@@ -51,11 +51,11 @@
                             <div class="col-span-2">
                                 <ul class="text-white text-xl space-y-4 py-6">
                                     <li class="font-normal"><u>Free Add-ons Provided to Our Students</u></li>
-                                    <li class="font-normal"><i class="fa fa-heart"></i> Instant Proof of Completion Report (via Email)</li>
-                                    <li class="font-normal"><i class="fa fa-life-ring"></i> SMS Notification on Cert. Processing</li>
-                                    <li class="font-normal"><i class="fa fa-cloud"></i> Login Anytime from Any Device.</li>
-                                    <li class="font-normal"><i class="fa-solid fa-comment"></i> 24x7 - Live Chat & Phone Support</li>
-                                    <li class="font-normal"><i class="fa fa-refresh"></i> Free Certificate Re-processing</li>
+                                    <li class="font-normal"><i class="fa fa-heart" aria-label="Instant Proof of Completion Report"></i> Instant Proof of Completion Report (via Email)</li>
+                                    <li class="font-normal"><i class="fa fa-life-ring" aria-label="SMS Notification on Certificate Processing"></i> SMS Notification on Cert. Processing</li>
+                                    <li class="font-normal"><i class="fa fa-cloud" aria-label="Login Anytime from Any Device"></i> Login Anytime from Any Device.</li>
+                                    <li class="font-normal"><i class="fa-solid fa-comment" aria-label="24x7 Live Chat and Phone Support"></i> 24x7 - Live Chat & Phone Support</li>
+                                    <li class="font-normal"><i class="fa fa-refresh" aria-label="Free Certificate Re-processing"></i> Free Certificate Re-processing</li>
                                 </ul>
                             </div>
                             <div class="grid justify-items-end">
@@ -87,8 +87,8 @@
                         </div>
                         <div class="mt-2 grid grid-cols-1">
                         <select id="location" name="location" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                            <option selected>Please Select State</option>
-                            <option >Wisconsin</option>
+                            <option value="0" selected>Please Select State</option>
+                            <option value="1">Wisconsin</option>
                         </select>
                         <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
                             <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
@@ -97,20 +97,21 @@
 
                         <div class="flex space-x-1 mt-2">
                             <h4 class="bg-yellow-600 rounded-sm w-15 flex py-1 px-2 text-sm text-center text-white whitespace-nowrap">Step 2</h4>
-                            <label for="location" class="flex items-center text-sm font-medium text-gray-900">Select Course</label>
+                            <label for="course" class="flex items-center text-sm font-medium text-gray-900">Select Course</label>
                         </div>
                         <div class="mt-2 grid grid-cols-1">
-                        <select id="location" name="location" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                            <option selected>Select Your Course</option>
-                            <option >Failure to Yield Course (Right of Way)</option>
+                        <select id="course" name="course" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                            <option value="0">Select Your Course</option>
+                            <option value="1">Failure to Yield Course (Right of Way)</option>
                         </select>
                         <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
                             <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                         </svg>
                         </div>
+                        <div class="mt-2 text-center"><span id="error-message" class="text-red-400 font-light text-xs"></span></div>
                     </div>
                     <div class="flex items-center mt-2 justify-center w-full">
-                        <button class="px-20 py-3 bg-yellow-600 text-center rounded-sm text-lg font-bold text-white">Let's Begin</button>
+                        <button class="px-20 py-3 bg-yellow-600 text-center rounded-sm text-lg font-bold text-white hover:cursor-pointer">Let's Begin</button>
                     </div>
                     <div class="text-center h-1/2 space-y-5">
                         <p><small>Having issues? Signup <a href="http://" class="text-blue-400 hover:text-blue-600">manually</a> or <a href="http://" class="text-blue-400 hover:text-blue-600">call us</a>!</small></p>
@@ -131,19 +132,19 @@
     <div class="mx-auto max-w-7xl h-full sm:px-10 lg:px-14 pb-5">
         <div class="grid grid-rows-1 md:grid-cols-4 h-full pb-2">
             <div class="box1 bg-yellow-600 p-5 mb-1">
-                <h3 class="font-bold text-lg"><i class="fa-solid fa-money-bill-1"></i> $10* Course</h3>
+                <h3 class="font-bold text-lg"><i class="fa-solid fa-money-bill-1" aria-label="$10 Course"></i> $10* Course</h3>
                 <p class="py-4">Why pay $100 for the same course? We charge only $10 for our course plus a super low *certificate handling and processing fee paid before taking the course</p>
             </div>
             <div class="box2 bg-amber-500 p-5 mb-1">
-                <h3 class="font-bold text-lg"><i class="fa fa-check-square"></i> DMV REPORTING</h3>
+                <h3 class="font-bold text-lg"><i class="fa fa-check-square" aria-label="DMV Reporting"></i> DMV REPORTING</h3>
                 <p class="py-4">If you received a letter from the DMV requiring you to take this course, enroll now to avoid any future driving privileges. We also report your completion to the DMV for you.</p>
             </div>
             <div class="box3 bg-amber-400 p-5 mb-1">
-                <h3 class="font-bold text-lg"><i class="fa fa-sign-in"></i> $0 HIDDEN FEES</h3>
+                <h3 class="font-bold text-lg"><i class="fa fa-sign-in" aria-label="No Hidden Fees"></i> $0 HIDDEN FEES</h3>
                 <p class="py-4">Many other schools have made a habit of adding hidden fees to student courses after their course. With us you see all fees up-front. Pay What you see not a dime more!</p>
             </div>
             <div class="box4 bg-amber-300 p-5 mb-1">
-                <h3 class="font-bold text-lg"><i class="fa fa-video"></i> VIDEO COURSE</h3>
+                <h3 class="font-bold text-lg"><i class="fa fa-video" aria-label="Video Course"></i> VIDEO COURSE</h3>
                 <p class="py-4">We're one of the only schools in Wisconsin that offers this course in a video format. Sit back relax and watch informative videos. No more boring reading!</p>
             </div>
         </div>
@@ -185,43 +186,43 @@
         <div class="mx-auto max-w-7xl h-full sm:px-10 lg:px-14">
             <div class="grid grid-rows-1 grid-cols-1 md:grid-rows-2 md:grid-cols-4 space-y-5">
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-regular fa-clock text-6xl text-blue-400"></i>
+                    <i class="fa-regular fa-clock text-6xl text-blue-400" aria-label="Study At Your Pace"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">Study At Your Pace </h3>
                     <p class="text-cemter">Our Online Traffic School is completely self paced. Log in and out of the course as many times as you'd like! Your progress is automatically saved.</p>
                 </div>
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-solid fa-window-restore text-6xl text-gray-400"></i>
+                    <i class="fa-solid fa-window-restore text-6xl text-gray-400" aria-label="Works Everywhere"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">Works Everywhere </h3>
                     <p class="text-cemter">Our Online Traffic School is completely self paced. Log in and out of the course as many times as you'd like! Your progress is automatically saved.</p>
                 </div>
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-solid fa-brain text-6xl text-blue-600"></i>
+                    <i class="fa-solid fa-brain text-6xl text-blue-600" aria-label="Informative Course"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">Informative Course </h3>
                     <p class="text-cemter">Visual aids help our users understand our materials better. We have incorporated videos and graphics to assist you in the learning process.</p>
                 </div>
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-solid fa-comments text-6xl text-green-600"></i>
+                    <i class="fa-solid fa-comments text-6xl text-green-600" aria-label="Reliable Support"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">Reliable Support </h3>
                     <p class="text-cemter">Customer support is the backbone of our business. We provide phenomenal support via Live Chat, Email and Phone.</p>
                 </div>
 
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-solid fa-table-cells-column-lock text-6xl text-gray-500"></i>
+                    <i class="fa-solid fa-table-cells-column-lock text-6xl text-gray-500" aria-label="Secured Site"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">Secured Site</h3>
                     <p class="text-cemter">Data security is our number one priority. We encrypt all of your information. Your info is moved away from our servers once you finish the course.</p>
                 </div>
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-solid fa-envelope-open-text text-6xl text-yellow-500"></i>
+                    <i class="fa-solid fa-envelope-open-text text-6xl text-yellow-500" aria-label="Proactive Communication"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">Proactive Communication</h3>
                     <p class="text-cemter">If DMV or Court signals user's incorrect/missing information, we make every effort to contact your to resolve issue.</p>
                 </div>
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-solid fa-rectangle-list text-6xl text-yellow-800"></i>
+                    <i class="fa-solid fa-rectangle-list text-6xl text-yellow-800" aria-label="Only 5 Chapters"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">Only 5 Chapters!</h3>
                     <p class="text-cemter">We made our course as simple as possible. With five chapters to study and our practice quizzes, helps you get ready for the final exam.</p>
                 </div>
                 <div class="px-5 justify-items-center space-y-2 text-center">
-                    <i class="fa-regular fa-rectangle-list text-6xl text-gray-400"></i>
+                    <i class="fa-regular fa-rectangle-list text-6xl text-gray-400" aria-label="99% Success Rate"></i>
                     <h3 class="justify-self-center text-xl text-blue-400">99% Success Rate</h3>
                     <p class="text-cemter">The final exam covers what you study in our course. With over 99% success rate, rest assured you are making the right choice choosing us.</p>
                 </div>
