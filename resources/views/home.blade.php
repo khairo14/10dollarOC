@@ -111,7 +111,9 @@
                         <div class="mt-2 text-center"><span id="error-message" class="text-red-400 font-light text-xs"></span></div>
                     </div>
                     <div class="flex items-center mt-2 justify-center w-full">
-                        <button class="px-20 py-3 bg-yellow-600 text-center rounded-sm text-lg font-bold text-white hover:cursor-pointer">Let's Begin</button>
+                        <a href="{{ route('user') }}">
+                            <button class="px-20 py-3 bg-yellow-600 text-center rounded-sm text-lg font-bold text-white hover:cursor-pointer">Let's Begin</button>
+                        </a>
                     </div>
                     <div class="text-center h-1/2 space-y-5">
                         <p><small>Having issues? Signup <a href="http://" class="text-blue-400 hover:text-blue-600">manually</a> or <a href="http://" class="text-blue-400 hover:text-blue-600">call us</a>!</small></p>
